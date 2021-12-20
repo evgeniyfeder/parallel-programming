@@ -1,0 +1,9 @@
+[submodule "bfs/pctl"]
+	path = bfs/pctl
+	url = git@github.com:deepsea-inria/pctl.git
+[submodule "bfs/chunkedseq"]
+	path = bfs/chunkedseq
+	url = git@github.com:deepsea-inria/chunkedseq.git
+[submodule "bfs/cmdline"]
+	path = bfs/cmdline
+	url = git@github.com:deepsea-inria/cmdline.git
