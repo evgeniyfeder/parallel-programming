@@ -130,7 +130,7 @@ graph_t make_cubic_graph(std::size_t cube_size)
 
 int main()
 {
-   const int n = 300, m = 5;
+   const int n = 500, m = 5;
 
    std::pair<long, long> sum_time = {0,0};
    auto graph = make_cubic_graph(n);
@@ -144,17 +144,19 @@ int main()
       std::int32_t d_par = par::bfs(graph, 0, graph.size() - 1);
 
       std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-      auto time = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
-      std::cout << "Time par = " << time << " µs" << std::endl;
-      sum_time.first += time;
+      auto time_par = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+      std::cout << "Time par = " << time_par << " µs" << std::endl;
+      sum_time.first += time_par;
 
       begin = std::chrono::steady_clock::now();
       std::int32_t d_seq = seq::bfs(graph, 0, graph.size() - 1);
 
       end = std::chrono::steady_clock::now();
-      time = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
-      std::cout << "Time seq = " << time << " µs" << std::endl;
-      sum_time.second += time;
+      auto time_seq = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+      std::cout << "Time seq = " << time_seq << " µs" << std::endl;
+      sum_time.second += time_seq;
+
+      std::cout << "Ratio seq/par = " << (double)time_seq / time_par << std::endl;
 
       assert(d_seq == 3 * (n - 1) && d_par == d_seq);
    }
